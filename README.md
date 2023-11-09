@@ -3,7 +3,9 @@
 ![alt](img/hbnb.png)
 ---
 ## Description
+
 This team project is part of the alx Full-Stack Software Engineer program. It's the first step towards building a first full web application: an AirBnB clone. This first step (back-end) consists of a custom command-line interface for data management, and the base classes for the storage of this data to be used for the development of the application.
+
 ---
 ## Files and Directories
 
@@ -25,8 +27,8 @@ This team project is part of the alx Full-Stack Software Engineer program. It's 
 |Destroy an object | `(hbnb) destroy <class> <id> or (hbnb) <class>.destroy(<id>)` |
 |Show all objects / all instances of a class | `(hbnb) all or (hbnb) all <class>` |
 |Update an attribute of an object | `(hbnb) update <class> <id> <attribute name> "<attribute value>" or (hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")`|
-
-##Execution in interactive mode 
+---
+Execution in interactive mode 
 ``` cmd
 $ ./console.py
 (hbnb) help
@@ -39,7 +41,8 @@ EOF  help  quit
 (hbnb) 
 (hbnb) quit
 $
-
+```
+---
 Non_interactive mode
 
 ``` cmd 
