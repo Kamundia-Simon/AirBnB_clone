@@ -15,7 +15,7 @@ class BaseModel:
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
-            for i, j in kwargs.item():
+            for i, j in kwargs.items():
                 if i == "created_at" or j == "updated_at":
                     self.__dict__[i] = datetime.strptime(j, dtform)
                 else:
