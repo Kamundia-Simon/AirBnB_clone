@@ -1,0 +1,71 @@
+#!/usr/bin/python3
+"""Defines unittests for models/base_model.py.
+
+Unittest classes:
+    TestBaseModel_instantiation
+    TestBaseModel_save
+    TestBaseModel_to_dict
+"""
+import os
+import models
+import unittest
+from datetime import datetime
+from time import sleep
+from models.base_model import BaseModel
+
+class TestBaseModel(unittest.TestCase):
+    """Unittests for the BaseModel class."""
+
+    def test_instance_creation(self):
+        """Test instantiation of BaseModel."""
+        my_model = BaseModel()
+        self.assertIsInstance(my_model, BaseModel)
+
+    def test_id_generation(self):
+        """Test if unique id is generated."""
+        model1 = BaseModel()
+        model2 = BaseModel()
+        self.assertNotEqual(model1.id, model2.id)
+
+    def test_created_at_type(self):
+        """Test if created_at attribute is datetime type."""
+        my_model = BaseModel()
+        self.assertIsInstance(my_model.created_at, datetime)
+
+    def test_updated_at_type(self):
+        """Test if updated_at attribute is datetime type."""
+        my_model = BaseModel()
+        self.assertIsInstance(my_model.updated_at, datetime)
+
+    def test_str_representation(self):
+        """Test the __str__ representation."""
+        my_model = BaseModel()
+        str_repr = str(my_model)
+        self.assertIn("[BaseModel]", str_repr)
+        self.assertIn(str(my_model.id), str_repr)
+        self.assertIn(str(my_model.__dict__), str_repr)
+
+    def test_save_method(self):
+        """Test the save method."""
+        my_model = BaseModel()
+        original_updated_at = my_model.updated_at
+        my_model.save()
+        self.assertNotEqual(original_updated_at, my_model.updated_at)
+
+    def test_to_dict_method(self):
+        """Test the to_dict method."""
+        my_model = BaseModel()
+        my_model.name = "Test Model"
+        my_model.my_number = 42
+        my_model_dict = my_model.to_dict()
+
+        self.assertEqual(my_model_dict['id'], my_model.id)
+        self.assertEqual(my_model_dict['__class__'], 'BaseModel')
+        self.assertEqual(my_model_dict['created_at'], my_model.created_at.isoformat())
+        self.assertEqual(my_model_dict['updated_at'], my_model.updated_at.isoformat())
+        self.assertEqual(my_model_dict['name'], "Test Model")
+        self.assertEqual(my_model_dict['my_number'], 42)
+
+
+if __name__ == "__main__":
+    unittest.main()
