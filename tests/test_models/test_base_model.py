@@ -13,6 +13,7 @@ from datetime import datetime
 from time import sleep
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """Unittests for the BaseModel class."""
 
@@ -54,17 +55,19 @@ class TestBaseModel(unittest.TestCase):
 
     def test_to_dict_method(self):
         """Test the to_dict method."""
-        my_model = BaseModel()
-        my_model.name = "Test Model"
-        my_model.my_number = 42
-        my_model_dict = my_model.to_dict()
+        my_mod = BaseModel()
+        my_mod.name = "Test Mod"
+        my_mod.my_number = 42
+        my_mod_dict = my_mod.to_dict()
 
-        self.assertEqual(my_model_dict['id'], my_model.id)
-        self.assertEqual(my_model_dict['__class__'], 'BaseModel')
-        self.assertEqual(my_model_dict['created_at'], my_model.created_at.isoformat())
-        self.assertEqual(my_model_dict['updated_at'], my_model.updated_at.isoformat())
-        self.assertEqual(my_model_dict['name'], "Test Model")
-        self.assertEqual(my_model_dict['my_number'], 42)
+        self.assertEqual(my_mod_dict['id'], my_mod.id)
+        self.assertEqual(my_mod_dict['__class__'], 'BaseModel')
+        self.assertEqual(my_mod_dict['created_at'],
+                         my_mod.created_at.isoformat())
+        self.assertEqual(my_mod_dict['updated_at'],
+                         my_mod.updated_at.isoformat())
+        self.assertEqual(my_mod_dict['name'], "Test Mod")
+        self.assertEqual(my_mod_dict['my_number'], 42)
 
 
 if __name__ == "__main__":
