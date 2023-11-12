@@ -5,6 +5,10 @@ from models import storage
 from models.base_model import BaseModel
 
 
+def parse(arg):
+    return tuple(arg.split())
+
+
 class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter.
     Attributes:
@@ -12,6 +16,9 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
+    __classes = {
+        "BaseModel",
+    }
 
     def emptyline(self):
         """Do nothing upon receiving an empty line."""
