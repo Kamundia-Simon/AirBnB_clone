@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ containd the Base class for AirBnB console
 """
-
+import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -16,10 +16,13 @@ class BaseModel:
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
             for i, j in kwargs.items():
-                if i == "created_at" or j == "updated_at":
+                if i == "created_at" or i == "updated_at":
                     self.__dict__[i] = datetime.strptime(j, dtform)
                 else:
                     self.__dict__[i] = j
+
+        else:
+            models.storage.new(self)
 
     def __str__(self):
         nm = self.__class__.__name__
@@ -27,6 +30,7 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         obj_dict = self.__dict__.copy()
