@@ -38,16 +38,17 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Create a new BaseModel, print its id, and save it to file.json"""
-        cls_name = parse(arg)[0]
-        classes = ["BaseModel"]
-        if cls_name is None:
+        """Usage: create <class>
+        Create a new class instance and print its id.
+        """
+        argl = parse(arg)
+        if len(argl) == 0:
             print("** class name missing **")
-        elif cls_name not in classes:
+        elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
-        elif cls_name == classes[0]:
-            print(BaseModel().id)
-            FileStorage().save()
+        else:
+            print(eval(argl[0])().id)
+            storage.save()
 
     def help_create(self):
         """Dislay information about the create command."""

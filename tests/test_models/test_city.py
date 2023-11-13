@@ -90,7 +90,8 @@ class TestCityInstantiation(unittest.TestCase):
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
-            City(id=None, created_at=None, updated_at=None, name=None, state_id=None)
+            City(id=None, created_at=None, updated_at=None,
+                 name=None, state_id=None)
 
 
 class TestCitySave(unittest.TestCase):
