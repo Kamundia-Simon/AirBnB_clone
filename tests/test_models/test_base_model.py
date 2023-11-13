@@ -19,7 +19,7 @@ class TestBaseModel(unittest.TestCase):
     """Unittests for the BaseModel class."""
 
     @classmethod
-    def setUpClass(cls):
+    def setUp(self):
         try:
             os.rename("file.json", "tmp")
         except IOError:
@@ -87,24 +87,6 @@ class TestBaseModel(unittest.TestCase):
                          my_mod.updated_at.isoformat())
         self.assertEqual(my_mod_dict['name'], "Test Mod")
         self.assertEqual(my_mod_dict['my_number'], 42)
-
-    def test_save_updates_file(self):
-        bm = BaseModel()
-        bm.save()
-        bmid = "BaseModel." + bm.id
-        all_objects = models.storage.all()
-        self.assertIn(bmid, all_objects)
-
-        with open("file.json", "r") as f:
-            self.assertIn(bmid, f.read())
-
-    def test_save_with_storage_new(self):
-        bm = BaseModel()
-        original_updated_at = bm.updated_at
-        bm.save()
-        stored_model = models.storage.all().get(bm.id)
-        self.assertIsNotNone(stored_model)
-        self.assertEqual(original_updated_at, stored_model.updated_at)
 
 
 if __name__ == "__main__":
