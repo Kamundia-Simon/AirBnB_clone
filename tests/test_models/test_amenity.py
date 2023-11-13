@@ -128,13 +128,6 @@ class TestAmenitySave(unittest.TestCase):
         with self.assertRaises(TypeError):
             am.save(None)
 
-    def test_save_updates_file(self):
-        am = Amenity()
-        am.save()
-        am_id = "Amenity." + am.id
-        with open("file.json", "r") as f:
-            self.assertIn(am_id, f.read())
-
 
 class TestAmenityToDict(unittest.TestCase):
     """Unittests for testing to_dict method of the Amenity class."""

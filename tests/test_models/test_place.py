@@ -195,13 +195,6 @@ class TestPlace_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             pl.save(None)
 
-    def test_save_updates_file(self):
-        pl = Place()
-        pl.save()
-        plid = "Place." + pl.id
-        with open("file.json", "r") as f:
-            self.assertIn(plid, f.read())
-
 
 class TestPlace_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the Place class."""

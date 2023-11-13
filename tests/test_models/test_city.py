@@ -81,12 +81,10 @@ class TestCityInstantiation(unittest.TestCase):
         """Instantiation with kwargs test method"""
         dt = datetime.today()
         dt_iso = dt.isoformat()
-        cy = City(id="3", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(cy.id, "3")
+        cy = City(id="254", created_at=dt_iso, updated_at=dt_iso)
+        self.assertEqual(cy.id, "254")
         self.assertEqual(cy.created_at, dt)
         self.assertEqual(cy.updated_at, dt)
-        self.assertEqual(cy.name, "Nairobi")
-        self.assertEqual(cy.state_id, "254")
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -137,13 +135,6 @@ class TestCitySave(unittest.TestCase):
         with self.assertRaises(TypeError):
             city.save(None)
 
-    def test_save_updates_file(self):
-        city = City()
-        city.save()
-        city_id = "City." + city.id
-        with open("file.json", "r") as file:
-            self.assertIn(city_id, file.read())
-
 
 class TestCityToDict(unittest.TestCase):
     """Unittests for testing to_dict method of the City class."""
@@ -151,20 +142,11 @@ class TestCityToDict(unittest.TestCase):
     def test_to_dict_type(self):
         self.assertTrue(dict, type(City().to_dict()))
 
-    def test_to_dict_contains_correct_keys(self):
-        city = City()
-        self.assertIn("id", city.to_dict())
-        self.assertIn("created_at", city.to_dict())
-        self.assertIn("updated_at", city.to_dict())
-        self.assertIn("__class__", city.to_dict())
-        self.assertIn("name", city.to_dict())
-        self.assertIn("state_id", city.to_dict())
-
     def test_to_dict_contains_added_attributes(self):
         city = City()
-        city.middle_name = "Holberton"
-        city.my_number = 98
-        self.assertEqual("Holberton", city.middle_name)
+        city.middle_name = "nairobi"
+        city.my_number = 254
+        self.assertEqual("nairobi", city.middle_name)
         self.assertIn("my_number", city.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):

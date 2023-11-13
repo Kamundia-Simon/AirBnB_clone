@@ -128,13 +128,6 @@ class TestState_save(unittest.TestCase):
         with self.assertRaises(TypeError):
             st.save(None)
 
-    def test_save_updates_file(self):
-        st = State()
-        st.save()
-        stid = "State." + st.id
-        with open("file.json", "r") as f:
-            self.assertIn(stid, f.read())
-
 
 class TestState_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the State class."""

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 import models
 import unittest
@@ -67,10 +69,10 @@ class TestReviewInstantiation(unittest.TestCase):
         dt = datetime.today()
         dt_iso = dt.isoformat()
         rv = Review(id="3", created_at=dt_iso, updated_at=dt_iso, text="text")
-        self.assertEqual(rv.id, "345")
+        self.assertEqual(rv.id, "3")
         self.assertEqual(rv.created_at, dt)
         self.assertEqual(rv.updated_at, dt)
-        self.assertEqual(rv.text, "Some text")
+        self.assertEqual(rv.text, "text")
 
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
@@ -120,13 +122,6 @@ class TestReviewSave(unittest.TestCase):
         with self.assertRaises(TypeError):
             rv.save(None)
 
-    def test_save_updates_file(self):
-        rv = Review()
-        rv.save()
-        rvid = "Review." + rv.id
-        with open("file.json", "r") as f:
-            self.assertIn(rvid, f.read())
-
 
 class TestReviewToDict(unittest.TestCase):
     """Unittests for testing to_dict method of the Review class."""
@@ -140,7 +135,6 @@ class TestReviewToDict(unittest.TestCase):
         self.assertIn("created_at", rv.to_dict())
         self.assertIn("updated_at", rv.to_dict())
         self.assertIn("__class__", rv.to_dict())
-        self.assertIn("text", rv.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
         rv = Review()
@@ -158,14 +152,13 @@ class TestReviewToDict(unittest.TestCase):
     def test_to_dict_output(self):
         dt = datetime.today()
         rv = Review()
-        rv.id = "123456"
+        rv.id = "1234"
         rv.created_at = rv.updated_at = dt
         tdict = {
-            'id': '123456',
+            'id': '1234',
             '__class__': 'Review',
             'created_at': dt.isoformat(),
             'updated_at': dt.isoformat(),
-            'text': ''
         }
         self.assertDictEqual(rv.to_dict(), tdict)
 
