@@ -17,7 +17,7 @@ def parse(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """Defines the HolbertonBnB command interpreter.
+    """Defines the  command interpreter.
     Attributes:
         prompt (str): The command prompt.
     """
@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     __classes = {
         "BaseModel",
-         "User",
+        "User",
         "State",
         "City",
         "Place",
